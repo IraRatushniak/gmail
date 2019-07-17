@@ -11,6 +11,7 @@ import static com.codeborne.selenide.Selenide.$;
 /**
  * In this class we have component
  * for creating new letter
+ * @author Iryna Ratushniak
  */
 public class CreateNewMessageComponent {
     protected final Logger log = Logger.getLogger(this.getClass());

@@ -8,6 +8,7 @@ import static com.codeborne.selenide.Selectors.by;
  * (it is a component for few pages),
  * which have few methods, for action
  * which are connected with message
+ * @author Iryna Ratushniak
  */
 public class MessageComponent {
     private SelenideElement messageLayout;

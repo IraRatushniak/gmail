@@ -15,6 +15,7 @@ import static com.codeborne.selenide.Selenide.$$;
  * Here we have class for List of message
  * (which are present on some pages)
  * and methods for them
+ * @author Iryna Ratushniak
  */
 public class MessageContainerComponent {
     private List<MessageComponent> messageComponents;

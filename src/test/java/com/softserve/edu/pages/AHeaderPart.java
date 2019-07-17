@@ -8,6 +8,7 @@ import static com.codeborne.selenide.Selenide.*;
 /**
  * In this class we have common things for
  * MessagePage and IncomingMessagePage
+ * @author Iryna Ratushniak
  */
 public abstract class AHeaderPart {
     private SelenideElement writeButton;

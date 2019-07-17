@@ -6,13 +6,17 @@ import com.softserve.edu.data.UserRepository;
 import com.softserve.edu.pages.*;
 import com.softserve.edu.tools.RandomText;
 
+
 import org.testng.Assert;
 
 import org.testng.annotations.*;
+import org.apache.log4j.Logger;
+
 import static com.codeborne.selenide.Selenide.*;
 
 
 public class sendMessageTest {
+    private final Logger log = Logger.getLogger(this.getClass());
     private final Integer MESSAGE_NAME_LENGTH = 10;
 
     @BeforeClass
@@ -25,9 +29,9 @@ public class sendMessageTest {
     }
 
 
-
     /**
      * Data for send message test
+     *
      * @return Object, which consist from message,
      * that we want to send and user, which send message
      */
@@ -47,6 +51,7 @@ public class sendMessageTest {
      */
     @Test(dataProvider = "dataForSendMessageTest")
     public void sendingMessageTest(String subjectOfTheMessage, User user) {
+        log.info("sendingMessageTest started!");
         //Steps
         LoginPage loginPage = new LoginPage();
         IncomingMessagesPage incomingMessagesPage = loginPage
@@ -55,13 +60,16 @@ public class sendMessageTest {
         incomingMessagesPage.clickWriteButton()
                 .sendMessage(UserRepository.ira().getLogin(),
                         subjectOfTheMessage, MessageRepository.someMessage());
-        Integer numberOfUnreadedMessages=incomingMessagesPage.getNumberOfUnreadedMesseges();
+        Integer numberOfUnreadedMessages = incomingMessagesPage.
+                getNumberOfUnreadedMesseges();
         //check
         Assert.assertTrue(incomingMessagesPage.
                 refreshPage().
                 getMessageContainerComponent().
                 isMessage(subjectOfTheMessage));
-        Assert.assertEquals(incomingMessagesPage.getNumberOfUnreadedMesseges(),numberOfUnreadedMessages++);
+        Assert.assertEquals(incomingMessagesPage.
+                getNumberOfUnreadedMesseges(), numberOfUnreadedMessages++);
+        log.info("sendingMessageTest finished!");
     }
 
 
