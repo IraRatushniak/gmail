@@ -52,8 +52,9 @@ public class MessageContainerComponent {
      * with particular name is present on the page
      */
     public Boolean isMessage(String subjectThatWeWantToFind) {
-        $$(by("class", "zA zE")).
-                first().waitUntil(Condition.appear, 100000);
+//        $$(by("class", "zA zE")).
+//                first().waitUntil(Condition.appear, 100000);
+        $(".bsU").waitUntil(Condition.visible,7000);
         return getMessageComponentsSubjectOfTheMessage().
                 contains(subjectThatWeWantToFind);
     }

@@ -12,15 +12,24 @@ import static com.codeborne.selenide.Selenide.*;
 public abstract class AHeaderPart {
     private SelenideElement writeButton;
     private CreateNewMessageComponent createNewMessageComponent;
+    private SelenideElement amountUnreadedMessages;
 
      AHeaderPart() {
         writeButton = $(byText("Написати"));
+        amountUnreadedMessages=$(".bsU");
     }
 
     //writeButton
     public CreateNewMessageComponent clickWriteButton() {
         writeButton.shouldBe(Condition.visible).click();
         return new CreateNewMessageComponent();
+    }
+    //amountUnreadedMessages
+    public SelenideElement getAmountUnreadedMessages(){
+         return amountUnreadedMessages;
+    }
+    public Integer getNumberOfUnreadedMesseges(){
+        return  Integer.parseInt(amountUnreadedMessages.getText());
     }
 
 
