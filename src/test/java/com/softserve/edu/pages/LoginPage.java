@@ -11,11 +11,12 @@ import static com.codeborne.selenide.Selenide.$;
 /**
  * Here we have class for LoginPage
  * (Page where we have to input correct email,
- * to have possibility to go into password page )
+ * to have possibility to go into password page).
+ *
  * @author Iryna Ratushniak
  */
 public class LoginPage {
-    private final Logger log =Logger.getLogger(this.getClass());
+    private final Logger log = Logger.getLogger(this.getClass());
     private SelenideElement emailField;
     private SelenideElement continueButton;
 
@@ -51,7 +52,7 @@ public class LoginPage {
     }
 
     /**
-     * method for login with correct email
+     * Method for login with correct email.
      *
      * @param email - email for login
      * @return next page(password page)

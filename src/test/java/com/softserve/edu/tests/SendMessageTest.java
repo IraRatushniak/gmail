@@ -3,19 +3,24 @@ package com.softserve.edu.tests;
 import com.softserve.edu.data.MessageRepository;
 import com.softserve.edu.data.User;
 import com.softserve.edu.data.UserRepository;
-import com.softserve.edu.pages.*;
+import com.softserve.edu.pages.IncomingMessagesPage;
+import com.softserve.edu.pages.LoginPage;
 import com.softserve.edu.tools.RandomText;
 
 
 import org.testng.Assert;
 
-import org.testng.annotations.*;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.DataProvider;
 import org.apache.log4j.Logger;
+import org.testng.annotations.Test;
 
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.open;
 
-
-public class sendMessageTest {
+/**
+ * Class for testing gmail.
+ */
+public class SendMessageTest {
     private final Logger log = Logger.getLogger(this.getClass());
     private final Integer MESSAGE_NAME_LENGTH = 10;
 
@@ -30,10 +35,11 @@ public class sendMessageTest {
 
 
     /**
-     * Data for send message test
+     * Data for send message test.
      *
      * @return Object, which consist from message,
-     * that we want to send and user, which send message
+     * that we want to send and user, which send
+     * message
      */
     @DataProvider
     public Object[][] dataForSendMessageTest() {
@@ -46,8 +52,8 @@ public class sendMessageTest {
      * This test is for checking
      * that email is really send.
      *
-     * @param subjectOfTheMessage-name of the message
-     * @param user-person?who          send message
+     * @param subjectOfTheMessage - name of the message
+     * @param user                - person, who          send message
      */
     @Test(dataProvider = "dataForSendMessageTest")
     public void sendingMessageTest(String subjectOfTheMessage, User user) {

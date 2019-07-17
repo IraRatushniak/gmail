@@ -10,11 +10,11 @@ import static com.codeborne.selenide.Selenide.$;
 
 /**
  * In this class we have component
- * for creating new letter
+ * for creating new letter.
  * @author Iryna Ratushniak
  */
 public class CreateNewMessageComponent {
-    protected final Logger log = Logger.getLogger(this.getClass());
+    private final Logger log = Logger.getLogger(this.getClass());
     private SelenideElement toWhomField;
     private SelenideElement subjectOfTheMessageField;
     private SelenideElement messageField;
@@ -79,7 +79,7 @@ public class CreateNewMessageComponent {
     }
 
     public void clickMessageField() {
-        messageField.click();
+        messageField.shouldBe(Condition.visible).click();
     }
 
     public void clearMessageField() {
@@ -119,6 +119,12 @@ public class CreateNewMessageComponent {
         return this;
     }
 
+    /**
+     * Here we have method for sending new message.
+     * @param toWhom - the person you want to send a message
+     * @param subjectOfTheMessage - name of the message
+     * @param message - the message
+     */
     public void sendMessage(String toWhom, String subjectOfTheMessage, String message) {
         fillToWhomField(toWhom);
         fillSubjectOfTheMessageField(subjectOfTheMessage);

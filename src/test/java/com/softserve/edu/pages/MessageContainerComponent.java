@@ -14,7 +14,8 @@ import static com.codeborne.selenide.Selenide.$$;
 /**
  * Here we have class for List of message
  * (which are present on some pages)
- * and methods for them
+ * and methods for them.
+ *
  * @author Iryna Ratushniak
  */
 public class MessageContainerComponent {
@@ -50,23 +51,21 @@ public class MessageContainerComponent {
 
     /**
      * Method for checking, that the message
-     * with particular name is present on the page
+     * with particular name is present on the page.
+     * @param subjectThatWeWantToFind - subject that we are looking for
      */
     public Boolean isMessage(String subjectThatWeWantToFind) {
-//        $$(by("class", "zA zE")).
-//                first().waitUntil(Condition.appear, 100000);
-        $(".bsU").waitUntil(Condition.visible,7000);
+        $(".bsU").waitUntil(Condition.visible, 7000);
         return getMessageComponentsSubjectOfTheMessage().
                 contains(subjectThatWeWantToFind);
     }
 
     /**
      * Method for printing names of all message,
-     * which are present on the page
+     * which are present on the page.
      */
     public void printMessagesNames() {
-        for (String messageName :
-                getMessageComponentsSubjectOfTheMessage()) {
+        for (String messageName : getMessageComponentsSubjectOfTheMessage()) {
             System.out.println(messageName);
         }
     }

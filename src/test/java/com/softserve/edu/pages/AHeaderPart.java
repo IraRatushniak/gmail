@@ -2,12 +2,14 @@ package com.softserve.edu.pages;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 /**
  * In this class we have common things for
  * MessagePage and IncomingMessagePage
+ *
  * @author Iryna Ratushniak
  */
 public abstract class AHeaderPart {
@@ -15,9 +17,9 @@ public abstract class AHeaderPart {
     private CreateNewMessageComponent createNewMessageComponent;
     private SelenideElement amountUnreadedMessages;
 
-     AHeaderPart() {
+    AHeaderPart() {
         writeButton = $(byText("Написати"));
-        amountUnreadedMessages=$(".bsU");
+        amountUnreadedMessages = $(".bsU");
     }
 
     //writeButton
@@ -25,12 +27,14 @@ public abstract class AHeaderPart {
         writeButton.shouldBe(Condition.visible).click();
         return new CreateNewMessageComponent();
     }
+
     //amountUnreadedMessages
-    public SelenideElement getAmountUnreadedMessages(){
-         return amountUnreadedMessages;
+    public SelenideElement getAmountUnreadedMessages() {
+        return amountUnreadedMessages;
     }
-    public Integer getNumberOfUnreadedMesseges(){
-        return  Integer.parseInt(amountUnreadedMessages.getText());
+
+    public Integer getNumberOfUnreadedMesseges() {
+        return Integer.parseInt(amountUnreadedMessages.getText());
     }
 
 

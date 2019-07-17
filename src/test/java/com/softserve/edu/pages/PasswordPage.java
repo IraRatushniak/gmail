@@ -10,7 +10,7 @@ import static com.codeborne.selenide.Selenide.$;
 /**
  * Here we have class for passwordPage
  * (Page where we have to input correct password,
- * to have possibility to use gmail )
+ * to have possibility to use gmail ).
  * @author Iryna Ratushniak
  */
 public class PasswordPage {

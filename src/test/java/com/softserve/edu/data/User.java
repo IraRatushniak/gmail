@@ -12,22 +12,23 @@ interface IUserBuild {
     IUser build();
 }
 
-public class User implements IUser,IPassword,ILogin,IUserBuild{
+public class User implements IUser, IPassword, ILogin, IUserBuild {
     private String login;
     private String password;
-public static ILogin get(){
-    return new User();
-}
+
+    public static ILogin get() {
+        return new User();
+    }
 
     @Override
     public IPassword setLogin(String login) {
-        this.login=login;
+        this.login = login;
         return this;
     }
 
     @Override
     public IUserBuild setPassword(String password) {
-        this.password=password;
+        this.password = password;
         return this;
     }
 

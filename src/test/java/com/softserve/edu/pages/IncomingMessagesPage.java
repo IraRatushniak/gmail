@@ -2,7 +2,8 @@ package com.softserve.edu.pages;
 
 
 /**
- * Here we have class for IncomingMessagesPage
+ * Here we have class for IncomingMessagesPage.
+ *
  * @author Iryna Ratushniak
  */
 public class IncomingMessagesPage extends AHeaderPart {
