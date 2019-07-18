@@ -10,10 +10,8 @@ import com.softserve.edu.tools.RandomText;
 
 import org.testng.Assert;
 
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.DataProvider;
+import org.testng.annotations.*;
 import org.apache.log4j.Logger;
-import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Selenide.open;
 
@@ -26,10 +24,14 @@ public class SendMessageTest {
 
     @BeforeClass
     public void beforeClass() {
+        log.info("Before class started!");
         System.setProperty("webdriver.chrome.driver",
                 ".\\lib\\chromedriver.exe");
         System.setProperty("selenide.browser", "Chrome");
+        log.info("ChromeDriver loaded.");
         open("https://gmail.com");
+        log.info("Gmail page opened!");
+        log.info("Beore class finished!");
 
     }
 
@@ -57,7 +59,7 @@ public class SendMessageTest {
      */
     @Test(dataProvider = "dataForSendMessageTest")
     public void sendingMessageTest(String subjectOfTheMessage, User user) {
-        log.info("sendingMessageTest started!");
+        log.info("Sending Message Test started!");
         //Steps
         LoginPage loginPage = new LoginPage();
         IncomingMessagesPage incomingMessagesPage = loginPage
@@ -75,7 +77,17 @@ public class SendMessageTest {
                 isMessage(subjectOfTheMessage));
         Assert.assertEquals(incomingMessagesPage.
                 getNumberOfUnreadedMesseges(), numberOfUnreadedMessages++);
-        log.info("sendingMessageTest finished!");
+        log.info("Sending Message Test finished!");
+    }
+
+    @AfterMethod
+    public void afterMethod(){
+        log.info("After method started!");
+        IncomingMessagesPage incomingMessagesPage=new IncomingMessagesPage();
+        //logout
+        incomingMessagesPage.clickGoogleAccountDropdownElement().clickLogoutElement();
+        log.info("Successfully logged out");
+        log.info("After method finished!");
     }
 
 
