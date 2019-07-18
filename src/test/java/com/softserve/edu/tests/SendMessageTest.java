@@ -18,20 +18,13 @@ import static com.codeborne.selenide.Selenide.open;
 /**
  * Class for testing gmail.
  */
-public class SendMessageTest {
-    private final Logger log = Logger.getLogger(this.getClass());
+public class SendMessageTest extends ATestRunner {
     private final Integer MESSAGE_NAME_LENGTH = 10;
 
-    @BeforeClass
-    public void beforeClass() {
-        log.info("Before class started!");
-        System.setProperty("webdriver.chrome.driver",
-                ".\\lib\\chromedriver.exe");
-        System.setProperty("selenide.browser", "Chrome");
-        log.info("ChromeDriver loaded.");
+    @BeforeMethod
+    public void beforeMethod() {
         open("https://gmail.com");
         log.info("Gmail page opened!");
-        log.info("Beore class finished!");
 
     }
 
@@ -46,7 +39,8 @@ public class SendMessageTest {
     @DataProvider
     public Object[][] dataForSendMessageTest() {
         return new Object[][]{
-                {RandomText.subjectOfTheMessage(MESSAGE_NAME_LENGTH), UserRepository.ira()}
+                {RandomText.subjectOfTheMessage(MESSAGE_NAME_LENGTH),
+                        UserRepository.user()}
         };
     }
 
@@ -59,14 +53,13 @@ public class SendMessageTest {
      */
     @Test(dataProvider = "dataForSendMessageTest")
     public void sendingMessageTest(String subjectOfTheMessage, User user) {
-        log.info("Sending Message Test started!");
         //Steps
         LoginPage loginPage = new LoginPage();
         IncomingMessagesPage incomingMessagesPage = loginPage
                 .enterCorrectEmail(user.getLogin())
                 .enterCorrectPassword(user.getPassword());
         incomingMessagesPage.clickWriteButton()
-                .sendMessage(UserRepository.ira().getLogin(),
+                .sendMessage(user.getLogin(),
                         subjectOfTheMessage, MessageRepository.someMessage());
         Integer numberOfUnreadedMessages = incomingMessagesPage.
                 getNumberOfUnreadedMesseges();
@@ -77,17 +70,16 @@ public class SendMessageTest {
                 isMessage(subjectOfTheMessage));
         Assert.assertEquals(incomingMessagesPage.
                 getNumberOfUnreadedMesseges(), numberOfUnreadedMessages++);
-        log.info("Sending Message Test finished!");
     }
 
     @AfterMethod
-    public void afterMethod(){
-        log.info("After method started!");
-        IncomingMessagesPage incomingMessagesPage=new IncomingMessagesPage();
+    public void afterMethod() {
+        IncomingMessagesPage incomingMessagesPage = new IncomingMessagesPage();
         //logout
-        incomingMessagesPage.clickGoogleAccountDropdownElement().clickLogoutElement();
+        incomingMessagesPage.clickGoogleAccountDropdownElement().
+                clickLogoutElement();
         log.info("Successfully logged out");
-        log.info("After method finished!");
+
     }
 
 

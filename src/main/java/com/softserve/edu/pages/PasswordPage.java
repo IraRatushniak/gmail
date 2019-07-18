@@ -11,6 +11,7 @@ import static com.codeborne.selenide.Selenide.$;
  * Here we have class for passwordPage
  * (Page where we have to input correct password,
  * to have possibility to use gmail ).
+ *
  * @author Iryna Ratushniak
  */
 public class PasswordPage {
@@ -23,12 +24,10 @@ public class PasswordPage {
         continueButton = $("#passwordNext");
     }
 
-    //continue button
     public void clickContinueButton() {
         continueButton.shouldBe(Condition.visible).click();
     }
 
-    //password field
     public SelenideElement getPasswordField() {
         return passwordField;
     }
@@ -60,7 +59,7 @@ public class PasswordPage {
         clearPasswordField();
         setPasswordField(password);
         clickContinueButton();
-        log.info("Password was correct, we are successfully logged!");
+        log.info("Password was correct( password: " + password + "), we are successfully logged!");
         return new IncomingMessagesPage();
     }
 

@@ -2,6 +2,7 @@ package com.softserve.edu.pages;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import org.apache.log4j.Logger;
 
 import static com.codeborne.selenide.Selectors.by;
 import static com.codeborne.selenide.Selectors.byText;
@@ -14,6 +15,7 @@ import static com.codeborne.selenide.Selenide.*;
  * @author Iryna Ratushniak
  */
 public abstract class AHeaderPart {
+    private final Logger log = Logger.getLogger(this.getClass());
     private SelenideElement writeButton;
     private CreateNewMessageComponent createNewMessageComponent;
     private SelenideElement amountUnreadedMessages;
@@ -22,39 +24,44 @@ public abstract class AHeaderPart {
     AHeaderPart() {
         writeButton = $(byText("Написати"));
         amountUnreadedMessages = $(".bsU");
-        googleAccountDropdownElement = $(by("class", "gb_za gbii"));
+        googleAccountDropdownElement = $(".gb_za.gbii");
     }
 
-    //writeButton
     public SelenideElement getWriteButton() {
         return writeButton;
     }
 
     public CreateNewMessageComponent clickWriteButton() {
         writeButton.shouldBe(Condition.visible).click();
+        log.info("Write button was clicked");
         return new CreateNewMessageComponent();
     }
-    public String getTextFromWriteButton(){
+
+    public String getTextFromWriteButton() {
         return writeButton.getText();
     }
 
-    //amountUnreadedMessages
+
     public SelenideElement getAmountUnreadedMessages() {
         return amountUnreadedMessages;
     }
+
     public Integer getNumberOfUnreadedMesseges() {
         return Integer.parseInt(amountUnreadedMessages.getText());
     }
 
-    //googleAccountDropdownElement
-    public SelenideElement getGoogleAccountDropdownElement(){
+
+    public SelenideElement getGoogleAccountDropdownElement() {
         return googleAccountDropdownElement;
     }
-    public String getText(){
+
+    public String getText() {
         return googleAccountDropdownElement.getText();
     }
-    public GoogleAccountDropdownComponent clickGoogleAccountDropdownElement(){
+
+    public GoogleAccountDropdownComponent clickGoogleAccountDropdownElement() {
         googleAccountDropdownElement.click();
+        log.info("Google Account Dropdown Element was clicked!");
         return new GoogleAccountDropdownComponent();
     }
 

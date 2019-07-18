@@ -11,6 +11,7 @@ public class RandomText {
      * Here we have method for creating random text.
      * 25 - it mean, that in English lenguage we have 25 letters
      * 25 + 97 - because [25,122] => a,...,z
+     *
      * @param length
      * @return
      */

@@ -22,20 +22,18 @@ public class MessageComponent {
 
     public MessageComponent(SelenideElement messageLayout) {
         this.messageLayout = messageLayout.waitUntil(Condition.visible, 10000);
-        fromWhom = messageLayout.$(by("class", "yX xY"));
+        fromWhom = messageLayout.$(".yX.xY");
         subjectOfTheMessage = messageLayout.
-                $(by("class", "xY a4W")).$(".xS").$(".xT").$(".y6");
+                $(".xY.a4W .xS .xT .y6");
         partialMessage = messageLayout.
-                $(by("class", "xY a4W")).$(".xS").$(".xT").$(".y2");
-        time = messageLayout.$(by("class", "xW xY"));
+                $("xY.a4W .xS .xT .y2");
+        time = messageLayout.$(".xW.xY");
     }
 
     public SelenideElement getMessageLayout() {
         return messageLayout;
     }
 
-
-    //fromWhom
     public SelenideElement getFromWhom() {
         return fromWhom;
     }
@@ -48,7 +46,6 @@ public class MessageComponent {
         return fromWhom.getText();
     }
 
-    //subjectOfTheMessage
     public SelenideElement getSubjectOfTheMessage() {
         return subjectOfTheMessage;
     }
@@ -62,7 +59,6 @@ public class MessageComponent {
                 .getText();
     }
 
-    //message
     public SelenideElement getPartialMessage() {
         return partialMessage;
     }
@@ -75,7 +71,6 @@ public class MessageComponent {
         return partialMessage.getText();
     }
 
-    //time
     public SelenideElement getTime() {
         return time;
     }

@@ -25,12 +25,12 @@ public class LoginPage {
         continueButton = $(byText("Далі"));
     }
 
-    //continue button
+
     public void clickContinueButton() {
         continueButton.shouldBe(Condition.visible).click();
     }
 
-    //email field
+
     public SelenideElement getEmailField() {
         return emailField;
     }
@@ -62,7 +62,7 @@ public class LoginPage {
         clearEmailField();
         setEmailField(email);
         clickContinueButton();
-        log.info("Email was correct, next(password page) page is available!");
+        log.info("Email was correct (email: " + email + "), next(password page) page is available!");
         return new PasswordPage();
     }
 

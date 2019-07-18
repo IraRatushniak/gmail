@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="CartTestSuite">
+
+    <test name="SendMessageTest">
+        <classes>
+            <class name="com.softserve.edu.tests.SendMessageTest">
+                <methods>
+                    <include name="sendingMessageTest" />
+                </methods>
+            </class>
+        </classes>
+    </test> <!-- Test -->
+
+</suite> <!-- Suite -->

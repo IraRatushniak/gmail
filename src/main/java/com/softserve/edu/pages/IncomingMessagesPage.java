@@ -1,6 +1,8 @@
 package com.softserve.edu.pages;
 
 
+import org.apache.log4j.Logger;
+
 /**
  * Here we have class for IncomingMessagesPage.
  *
@@ -8,6 +10,7 @@ package com.softserve.edu.pages;
  */
 public class IncomingMessagesPage extends AHeaderPart {
     private MessageContainerComponent messages;
+    private final Logger log = Logger.getLogger(this.getClass());
 
     public IncomingMessagesPage() {
         messages = new MessageContainerComponent();
@@ -18,6 +21,7 @@ public class IncomingMessagesPage extends AHeaderPart {
     }
 
     public IncomingMessagesPage refreshPage() {
+        log.info("Page was refreshed!");
         return new IncomingMessagesPage();
     }
 

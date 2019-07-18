@@ -11,6 +11,7 @@ import static com.codeborne.selenide.Selenide.$;
 /**
  * In this class we have component
  * for creating new letter.
+ *
  * @author Iryna Ratushniak
  */
 public class CreateNewMessageComponent {
@@ -23,11 +24,11 @@ public class CreateNewMessageComponent {
     public CreateNewMessageComponent() {
         toWhomField = $(By.name("to"));
         subjectOfTheMessageField = $(By.name("subjectbox"));
-        messageField = $(by("class","Am Al editable LW-avf"));
-        sendButton = $(by("class","T-I J-J5-Ji aoO v7 T-I-atl L3"));
+        messageField = $(".Am.Al.editable.LW-avf");
+        sendButton = $(".T-I.J-J5-Ji.aoO.v7.T-I-atl.L3");
     }
 
-    //toWhomField
+
     public SelenideElement getToWhomField() {
         return toWhomField;
     }
@@ -48,7 +49,7 @@ public class CreateNewMessageComponent {
         toWhomField.getText();
     }
 
-    //subjectOfTheMessageField
+
     public SelenideElement getSubjectOfTheMessageField() {
         return subjectOfTheMessageField;
     }
@@ -69,7 +70,7 @@ public class CreateNewMessageComponent {
         subjectOfTheMessageField.getText();
     }
 
-    //messageField
+
     public SelenideElement getMessageField() {
         return messageField;
     }
@@ -90,7 +91,7 @@ public class CreateNewMessageComponent {
         messageField.getText();
     }
 
-    //sendButton
+
     public void clickSendButton() {
         sendButton.shouldBe(Condition.visible).click();
     }
@@ -100,6 +101,7 @@ public class CreateNewMessageComponent {
         clearToWhomField();
         setToWhomField(toWhom);
         toWhomField.pressEnter();
+        log.info("To whom field was filled (to " + toWhom + ")!");
         return this;
     }
 
@@ -108,6 +110,7 @@ public class CreateNewMessageComponent {
         clearSubjectOfTheMessageField();
         setSubjectOfTheMessageField(subjectOfTheMessage);
         subjectOfTheMessageField.pressEnter();
+        log.info("Subject of the message was filled (subject : " + subjectOfTheMessage + ")!");
         return this;
     }
 
@@ -116,20 +119,22 @@ public class CreateNewMessageComponent {
         clearMessageField();
         setMessageField(message);
         messageField.pressEnter();
+        log.info("Message field was filled( message :" + message + ")!");
         return this;
     }
 
     /**
      * Here we have method for sending new message.
-     * @param toWhom - the person you want to send a message
+     *
+     * @param toWhom              - the person you want to send a message
      * @param subjectOfTheMessage - name of the message
-     * @param message - the message
+     * @param message             - the message
      */
     public void sendMessage(String toWhom, String subjectOfTheMessage, String message) {
-        fillToWhomField(toWhom);
-        fillSubjectOfTheMessageField(subjectOfTheMessage);
-        fillMessageField(message);
-        clickSendButton();
+        fillToWhomField(toWhom).
+                fillSubjectOfTheMessageField(subjectOfTheMessage).
+                fillMessageField(message).
+                clickSendButton();
         log.info("Message was send!");
     }
 }
